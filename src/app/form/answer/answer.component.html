@@ -1,0 +1,13 @@
+<div class='container'>
+  <b>{{question.key}}</b><br>
+  <span>{{question.value}}</span>
+  <hr>
+  <div *ngIf="checkboxList.value">
+    <b>{{checkboxList.key}}</b>
+  </div>
+  <div *ngFor="let answer of checkboxList.value">
+    <span>{{answer.label}}</span>
+  </div>
+  <hr>
+  <a href='/form/builder' class="link-primary">Back to form builder</a>
+</div>

@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSubmit.emit(this.form.value)" [formGroup]="form" class="form-horizontal">
+  <div *ngFor="let field of fields">
+    <app-field-builder [field]="field" [form]="form"></app-field-builder>
+  </div>
+  <button type="submit" class="btn btn-primary">Review my answers</button>
+</form>

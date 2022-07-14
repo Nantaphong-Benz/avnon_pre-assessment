@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+  <div [formGroupName]="field.name">
+    <div *ngFor="let option of field.options" class="form-check form-check">
+      <label class="form-check-label">
+        <input [formControlName]="option.key" class="form-check-input" type="checkbox" id="inlineCheckbox1"
+          value="{{option.label}}" />
+        {{option.label}}</label>
+    </div>
+  </div>
+</div>

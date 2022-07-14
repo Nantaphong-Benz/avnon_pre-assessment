@@ -1,0 +1,61 @@
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-body">
+      <div class='row'>
+        <ng-container *ngIf="fields.length > 0">
+          <app-dynamic-form [fields]="getFields()" (onSubmit)="reviewAnswer($event)"></app-dynamic-form>
+        </ng-container>
+      </div>
+      <div class='row'>
+        <div class='form-group'>
+          <a href='#' class="link-primary" data-toggle="modal" data-target="#exampleModal">Add new
+            question</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<form [formGroup]="builderForm" (ngSubmit)="submitQuestion()">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a new question</h5>
+          <button type="button" #closeButton class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class='form-group'>
+            <label for="">Paragraph Question</label>
+            <input type="text" class='form-control' placeholder='Type question here'
+              formControlName='paragraphQuestion'>
+          </div>
+          <div class='form-group'>
+            <label for="">Checkbox List Question</label>
+            <input type="text" class='form-control' placeholder='Type question here'
+              formControlName='checkboxQuestion'>
+          </div>
+          <div [hidden]="getCheckboxList(builderForm).length === 0">
+            <label>Checkbox List answer</label>
+          </div>
+          <div formArrayName='checkboxList'>
+            <div *ngFor="let checkbox of getCheckboxList(builderForm) let i=index" [formGroupName]="i">
+              <div class='form-group'>
+                <input type='text' class='form-control' placeholder='Add answer option' formControlName='checkboxValue'>
+              </div>
+            </div>
+            <button type='button' class='btn btn-outline-secondary' (click)="addAnotherAnswer()">+ Add another
+              answer</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type='submit' class='btn btn-outline-primary' id="closeModal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

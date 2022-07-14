@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <div class='form-group'>
+    <label [attr.for]="field.label">
+      {{field.label}}
+      <strong class="text-danger" *ngIf="field.required">*</strong>
+    </label>
+    <div [ngSwitch]="field.type">
+      <app-field-textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></app-field-textbox>
+      <app-field-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form"></app-field-checkbox>
+    </div>
+  </div>
+</form>
